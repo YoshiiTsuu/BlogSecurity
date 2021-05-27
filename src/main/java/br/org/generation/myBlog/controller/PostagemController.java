@@ -1,4 +1,4 @@
-package br.org.generation.myBlog.repository.controller;
+package br.org.generation.myBlog.controller;
 
 import java.util.List;
 
