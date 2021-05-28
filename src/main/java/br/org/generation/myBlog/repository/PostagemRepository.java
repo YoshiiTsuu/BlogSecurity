@@ -16,12 +16,10 @@ import br.org.generation.myBlog.model.Postagem;
 public interface PostagemRepository extends JpaRepository<Postagem, Long> {
 
 	public List<Postagem> findAllByTituloContainingIgnoreCase(String titulo);
-	//IgnoreCase ele ignora maiusculas e minusculas e faz a busca em todo o db
-	//findAll By Tituloé o objeto da classe Post
-	
+	// IgnoreCase ele ignora maiusculas e minusculas e faz a busca em todo o db
+	// findAll By Tituloé o objeto da classe Post
+
 	public List<Postagem> findAllByTextoContainingIgnoreCase(String texto);
-	
-	
+	// Para que encontre pelo texto
 
 }
-
