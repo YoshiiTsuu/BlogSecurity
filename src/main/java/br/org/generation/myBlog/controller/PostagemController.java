@@ -20,41 +20,44 @@ import br.org.generation.myBlog.repository.PostagemRepository;
 
 @RestController
 @RequestMapping("/postagem")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PostagemController {
 
 	@Autowired
 	private PostagemRepository repository;
 
-	@GetMapping() //Findall
+	@GetMapping() // Findall
 	public ResponseEntity<List<Postagem>> GetAll() {
 		return ResponseEntity.ok(repository.findAll());
 	}
 
-	@GetMapping("/{id}") //GetById
+	@GetMapping("/{id}") // GetById
 	public ResponseEntity<Postagem> GetById(@PathVariable long id) {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))// devolve um objeto resposta
 				.orElse(ResponseEntity.notFound().build());// caso contrário devolve um notfound
 	}
 
-	@GetMapping("/titulo/{titulo}") //GetByTitulo
+	@GetMapping("/titulo/{titulo}") // GetByTitulo
 	public ResponseEntity<List<Postagem>> GetByTitulo(@PathVariable String titulo) {
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo)); // Este método retorna uma
-																							// lista
+		//Cria uma resposta do tipo ok																	// lista
 	}
 
 	@GetMapping("/texto/{texto}")
 	public ResponseEntity<List<Postagem>> GetByTexto(@PathVariable String texto) {
 		return ResponseEntity.ok(repository.findAllByTextoContainingIgnoreCase(texto));
 	}
+
 	@PostMapping
-	public ResponseEntity<Postagem> post (@RequestBody Postagem postagem){
+	public ResponseEntity<Postagem> post(@RequestBody Postagem postagem) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(postagem));
 	}
+
 	@PutMapping
-	public ResponseEntity<Postagem> put (@RequestBody Postagem update){
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(update));		
+	public ResponseEntity<Postagem> put(@RequestBody Postagem update) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(update));
 	}
+
 	@DeleteMapping
 	public void delete(@PathVariable long id) {
 		repository.deleteById(id);
