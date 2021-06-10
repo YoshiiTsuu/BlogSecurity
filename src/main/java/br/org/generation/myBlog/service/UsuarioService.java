@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import br.org.generation.myBlog.model.Login;
 import br.org.generation.myBlog.model.Usuario;
 import br.org.generation.myBlog.repository.UsuarioRepository;
-
+//Regras de negócio, caso só autorize maiores de 18
+// E o usuario não pode ser duplicado
+// nem email
 @Service
 public class UsuarioService {
 

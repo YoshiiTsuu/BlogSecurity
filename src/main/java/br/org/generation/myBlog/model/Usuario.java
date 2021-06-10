@@ -23,6 +23,18 @@ public class Usuario {
 	@NotNull
 	@Size(min = 8)//Não precisa colocar limite max da senha, pois quando for criptografar ela fica muito maior
 	private String senha;
+	
+	// Criando Construtor para utilizar em camadas teste
+	public Usuario() {
+	}
+
+	// Outro Construtor! das camadas teste (somente para teste)
+	public Usuario(String nome, String usuario, String senha) {
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+	}
+
 
 	public long getId() {
 		return id;

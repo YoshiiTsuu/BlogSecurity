@@ -24,12 +24,13 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(service);
 	}
 
-	@Bean
+	@Bean //Possibilita que utilize em outras classes
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
-	@Override
+	@Override//Básico para fazer login
+	//"como se fosse controller só que de segurança"
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/usuarios/logar").permitAll()// Permite que alguns endpoints sejam
 																			// acessados sem que seja necessário login e
@@ -44,7 +45,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)// Indica qual tipo de
 																									// sessão será
 																									// utilizada
-				// Stateless pois não guarda sessão
+				// Stateless pois não guarda sessão/estado
 				.and().cors()//aceite requisições de qualuqer origem
 				.and().csrf().disable();// evita ataques a sua aplicação
 					//desabilita pois estamos em ambiente de trabalho
