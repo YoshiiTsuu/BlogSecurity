@@ -17,5 +17,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	public Usuario findFirstByNome(String nome);
 
-
 }

@@ -36,19 +36,4 @@ public class UsuarioControllerTest {
 		usuarioupd = new Usuario("Pongo de Oliveira", "ping21", "44451198");
 	}
 
-	@Test
-	public void deveRealizarPostUsuarios() {
-	HttpEntity<Usuario> request = new HttpEntity<Usuario>(usuario);
-	ResponseEntity<Usuario> resposta = testRestTemplate
-	.exchange("/usuarios/logar", HttpMethod.POST, request, Usuario.clas
-	Assert.assertEquals(HttpStatus.CREATED, resposta.getStatusCode());
-	}
-
-	@Disabled
-	@Test
-	public void deveRealizarPutUsuarios() {
-	HttpEntity<Usuario> request = new HttpEntity<Usuario>(usuarioupd);
-	ResponseEntity<Usuario> resposta = testRestTemplate
-	.exchange("/usuarios/cadastrar", HttpMethod.PUT, request, Usuario.class
-	Assert.assertEquals(HttpStatus.OK, resposta.getStatusCode())
 }

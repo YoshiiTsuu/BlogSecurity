@@ -32,19 +32,10 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override//Básico para fazer login
 	//"como se fosse controller só que de segurança"
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/usuarios/logar").permitAll()// Permite que alguns endpoints sejam
-																			// acessados sem que seja necessário login e
-																			// senha
-				.antMatchers("/usuarios/cadastrar").permitAll().anyRequest().authenticated() // todas outras requisições
-																								// deverão ser
-																								// autenticadas, define
-																								// que no header deverá
-																								// ser passado a chave
-																								// (token)
+		http.authorizeRequests().antMatchers("/usuarios/logar").permitAll()// Permite que alguns endpoints sejam acessados sem que seja necessário login e senha
+				.antMatchers("/usuarios/cadastrar").permitAll().anyRequest().authenticated() // todas outras requisições deverão serautenticadas, defineque no header deverá ser passado a chave (token)
 				.and().httpBasic()// padrão basic para gerar chave token
-				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)// Indica qual tipo de
-																									// sessão será
-																									// utilizada
+				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)// Indica qual tipo de sessão será utilizada
 				// Stateless pois não guarda sessão/estado
 				.and().cors()//aceite requisições de qualuqer origem
 				.and().csrf().disable();// evita ataques a sua aplicação
